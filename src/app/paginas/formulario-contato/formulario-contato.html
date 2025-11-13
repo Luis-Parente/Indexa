@@ -13,12 +13,32 @@
   <form [formGroup]="contatoForm" (ngSubmit)="salvarContato()">
     <label for="nome">Nome</label>
     <input type="text" id="nome" placeholder="Digite o nome do contato" formControlName="nome">
+    @if (contatoForm.get('nome')?.errors && contatoForm.get('nome')?.touched) {
+      <div class="mensagem-erro">
+        Campo obrigatótio
+      </div>
+    }
 
     <label for="numero">Número</label>
     <input type="text" id="numero" placeholder="Digite o número do telefone" formControlName="numero">
+    @if (contatoForm.get('numero')?.errors && contatoForm.get('numero')?.touched) {
+      <div class="mensagem-erro">
+        Campo obrigatótio
+      </div>
+    }
 
     <label for="email">E-mail</label>
     <input type="text" id="email" placeholder="Insira o endereço de e-mail do contato" formControlName="email">
+    @if (contatoForm.get('email')?.errors?.['required'] && contatoForm.get('email')?.touched) {
+      <div class="mensagem-erro">
+        Campo obrigatótio
+      </div>
+    }
+    @if (contatoForm.get('email')?.errors?.['email'] && contatoForm.get('email')?.touched) {
+      <div class="mensagem-erro">
+        Formato de e-mail inválido
+      </div>
+    }
 
     <app-separador></app-separador>
 
