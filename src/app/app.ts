@@ -13,10 +13,19 @@ interface Dados_Contato {
 
 import agenda from './agenda.json'
 import {FormsModule} from '@angular/forms';
+import {FormularioContato} from './paginas/formulario-contato/formulario-contato';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Container, Cabecalho, Separador, Contato, FormsModule],
+  imports: [
+    RouterOutlet,
+    Container,
+    Cabecalho,
+    Separador,
+    Contato,
+    FormsModule,
+    FormularioContato
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
