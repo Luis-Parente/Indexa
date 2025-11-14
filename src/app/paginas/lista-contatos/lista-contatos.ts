@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Cabecalho} from '../../componentes/cabecalho/cabecalho';
 import {Container} from '../../componentes/container/container';
 import {Contato} from '../../componentes/contato/contato';
 import {FormsModule} from '@angular/forms';
 import {Separador} from '../../componentes/separador/separador';
-import agenda from '../../agenda.json'
 import {RouterLink} from '@angular/router';
+import {ContatoService} from '../../services/contato.service';
 
 interface Dados_Contato {
   id: number;
@@ -27,11 +27,18 @@ interface Dados_Contato {
   styleUrl: './lista-contatos.css',
 })
 
-export class ListaContatos {
-  alfabeto: string = 'abcdefghijklmnopqrstuvwxyz';
-  contatos: Dados_Contato[] = agenda;
+export class ListaContatos implements OnInit {
 
+  alfabeto: string = 'abcdefghijklmnopqrstuvwxyz';
+  contatos: Dados_Contato[] = [];
   filtroPorTexto: string = "";
+
+  constructor(private contatoService: ContatoService) {
+  }
+
+  ngOnInit() {
+    this.contatos = this.contatoService.obterContatos();
+  }
 
   private removerAcentos(texto: string): string {
     return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
