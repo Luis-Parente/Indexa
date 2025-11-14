@@ -2,6 +2,13 @@
   <header>
     <section class="cabecalho-link">
       <img src="assets/logo.png" alt="">
+
+      <div>
+        <button>
+          <img class="seta" src="assets/arrow-left.png" alt="">
+          <a routerLink="/listaContatos">Voltar</a>
+        </button>
+      </div>
     </section>
 
     <section class="cabecalho-contato">
@@ -59,7 +66,7 @@
 
     <section class="botoes">
       <button type="button" (click)="cancelar()" class="botao-cancelar">Cancelar</button>
-      <button type="submit" class="botao-salvar">Salvar Contato</button>
+      <button type="submit" [disabled]="contatoForm.invalid" [ngClass]="contatoForm.valid ? 'botao-salvar' : 'botao-desabilitado'">Salvar Contato</button>
     </section>
   </form>
 </app-container>

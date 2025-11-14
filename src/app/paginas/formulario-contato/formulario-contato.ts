@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Container} from '../../componentes/container/container';
 import {Separador} from '../../componentes/separador/separador';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {NgClass} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-formulario-contato',
@@ -9,6 +11,8 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
     Container,
     Separador,
     ReactiveFormsModule,
+    NgClass,
+    RouterLink,
   ],
   templateUrl: './formulario-contato.html',
   styleUrl: './formulario-contato.css',
