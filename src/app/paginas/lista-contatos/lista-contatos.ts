@@ -6,12 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {Separador} from '../../componentes/separador/separador';
 import {RouterLink} from '@angular/router';
 import {ContatoService} from '../../services/contato.service';
-
-interface Dados_Contato {
-  id: number;
-  nome: string;
-  telefone: string;
-}
+import {DadosContato} from '../../componentes/contato/dados-contato';
 
 @Component({
   selector: 'app-lista-contatos',
@@ -30,7 +25,7 @@ interface Dados_Contato {
 export class ListaContatos implements OnInit {
 
   alfabeto: string = 'abcdefghijklmnopqrstuvwxyz';
-  contatos: Dados_Contato[] = [];
+  contatos: DadosContato[] = [];
   filtroPorTexto: string = "";
 
   constructor(private contatoService: ContatoService) {
@@ -44,7 +39,7 @@ export class ListaContatos implements OnInit {
     return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
-  filtrarContatosPorTexto(): Dados_Contato[] {
+  filtrarContatosPorTexto(): DadosContato[] {
     if (!this.filtroPorTexto.length) {
       return this.contatos;
     }
@@ -53,7 +48,7 @@ export class ListaContatos implements OnInit {
     });
   }
 
-  filtrarContatosPorLetraInicial(letra: string): Dados_Contato[] {
+  filtrarContatosPorLetraInicial(letra: string): DadosContato[] {
     return this.filtrarContatosPorTexto().filter(contato => {
       return this.removerAcentos(contato.nome).toLowerCase().startsWith(letra);
     })
