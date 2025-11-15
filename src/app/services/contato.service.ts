@@ -28,4 +28,16 @@ export class ContatoService {
   excluirPorId(id: number): Observable<DadosContato> {
     return this.http.delete<DadosContato>(`${this.API}/${id}`);
   }
+
+  editarPorId(contato: DadosContato): Observable<DadosContato> {
+    return this.http.put<DadosContato>(`${this.API}/${contato.id}`, contato);
+  }
+
+  editarOuSalvarContato(contato: DadosContato) {
+    if (contato.id) {
+      return this.editarPorId(contato);
+    } else {
+      return this.salvarContato(contato);
+    }
+  }
 }

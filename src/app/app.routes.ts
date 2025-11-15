@@ -9,6 +9,10 @@ export const routes: Routes = [
     component: FormularioContato
   },
   {
+    path: 'formulario/:id',
+    component: FormularioContato
+  },
+  {
     path: 'listaContatos',
     component: ListaContatos
   },
