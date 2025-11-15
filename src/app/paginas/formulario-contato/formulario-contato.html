@@ -1,22 +1,7 @@
 <app-container>
-  <header>
-    <section class="cabecalho-link">
-      <img src="assets/logo.png" alt="">
-
-      <div>
-        <button>
-          <img class="seta" src="assets/arrow-left.png" alt="">
-          <a routerLink="/listaContatos">Voltar</a>
-        </button>
-      </div>
-    </section>
-
-    <section class="cabecalho-contato">
-      <img src="assets/adicionar-contato.png" alt="">
-      <h1>Adicionar Contato</h1>
-    </section>
-  </header>
-
+  <app-cabecalho [bannerSrc]="'/assets/adicionar-contato.png'"
+                 [titulo]="'Adicionar contato'">>
+  </app-cabecalho>
   <form [formGroup]="contatoForm" (ngSubmit)="salvarContato()">
     <div role="button" class="imagem-contato">
       <i class="material-icons">add</i>
@@ -31,32 +16,18 @@
 
     <label for="nome">Nome</label>
     <input type="text" id="nome" placeholder="Digite o nome do contato" formControlName="nome">
-    @if (contatoForm.get('nome')?.errors && contatoForm.get('nome')?.touched) {
-      <div class="mensagem-erro">
-        Campo obrigatótio
-      </div>
-    }
+
+    <app-mensagem-erro [control]="obterControle('nome')"></app-mensagem-erro>
 
     <label for="numero">Número</label>
     <input type="text" id="numero" placeholder="Digite o número do telefone" formControlName="numero">
-    @if (contatoForm.get('numero')?.errors && contatoForm.get('numero')?.touched) {
-      <div class="mensagem-erro">
-        Campo obrigatótio
-      </div>
-    }
+    <app-mensagem-erro [control]="obterControle('numero')"></app-mensagem-erro>
+
 
     <label for="email">E-mail</label>
     <input type="text" id="email" placeholder="Insira o endereço de e-mail do contato" formControlName="email">
-    @if (contatoForm.get('email')?.errors?.['required'] && contatoForm.get('email')?.touched) {
-      <div class="mensagem-erro">
-        Campo obrigatótio
-      </div>
-    }
-    @if (contatoForm.get('email')?.errors?.['email'] && contatoForm.get('email')?.touched) {
-      <div class="mensagem-erro">
-        Formato de e-mail inválido
-      </div>
-    }
+    <app-mensagem-erro [control]="obterControle('email')"></app-mensagem-erro>
+
 
     <app-separador></app-separador>
 
@@ -77,7 +48,9 @@
 
     <section class="botoes">
       <button type="button" (click)="cancelar()" class="botao-cancelar">Cancelar</button>
-      <button type="submit" [disabled]="contatoForm.invalid" [ngClass]="contatoForm.valid ? 'botao-salvar' : 'botao-desabilitado'">Salvar Contato</button>
+      <button type="submit" [disabled]="contatoForm.invalid"
+              [ngClass]="contatoForm.valid ? 'botao-salvar' : 'botao-desabilitado'">Salvar Contato
+      </button>
     </section>
   </form>
 </app-container>

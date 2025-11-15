@@ -1,5 +1,9 @@
 <app-container>
-  <app-cabecalho></app-cabecalho>
+  <app-cabecalho
+    [telaInicial]="true"
+    [bannerSrc]="'assets/banner.png'"
+    [titulo]="'Organize, <span>conecte,</span> simplifique!'">
+  </app-cabecalho>
 
   <input
     type="search"
@@ -18,7 +22,8 @@
     <app-separador><p>{{ letra }}</p></app-separador>
 
     @for (contato of filtrarContatosPorLetraInicial(letra); track contato.id) {
-      <app-contato [nome]="contato.nome" [numero]="contato.numero" [id]="contato.id!" [avatar]="contato.avatar"></app-contato>
+      <app-contato [nome]="contato.nome" [numero]="contato.numero" [id]="contato.id!"
+                   [avatar]="contato.avatar"></app-contato>
     }
   }
 </app-container>

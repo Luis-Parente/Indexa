@@ -5,6 +5,7 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {ContatoService} from '../../services/contato.service';
 import {CommonModule} from '@angular/common';
 import {Separador} from '../../componentes/separador/separador';
+import {Cabecalho} from '../../componentes/cabecalho/cabecalho';
 
 @Component({
   standalone: true,
@@ -14,6 +15,7 @@ import {Separador} from '../../componentes/separador/separador';
     RouterLink,
     CommonModule,
     Separador,
+    Cabecalho,
   ],
   templateUrl: './perfil-contato.html',
   styleUrls: ['./perfil-contato.css'],
