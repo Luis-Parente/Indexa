@@ -1,7 +1,7 @@
-export interface Contato {
+export interface DadosContato {
   id?: number
   nome: string
-  telefone: string
+  numero: string
   email: string
   aniversario?: string
   redes?: string

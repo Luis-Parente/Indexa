@@ -1,31 +1,31 @@
 import {Injectable} from '@angular/core';
-import {DadosContato} from '../componentes/contato/dados-contato';
+import {DadosContato} from '../componentes/contato/dados.contato';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContatoService {
 
-  private contatos: DadosContato[] = [];
+  private readonly API = "http://localhost:8080/contatos";
 
-  constructor() {
-
-    const contatosLocalStorageString = localStorage.getItem('contatos');
-    const contatosLocalStorage =
-      contatosLocalStorageString ? JSON.parse(contatosLocalStorageString) : null;
-    if (contatosLocalStorage !== null) {
-      this.contatos = contatosLocalStorage || null;
-    }
-    localStorage.setItem('contatos', JSON.stringify(this.contatos));
+  constructor(private http: HttpClient) {
   }
 
-  obterContatos() {
-    return this.contatos;
+  obterContatos(): Observable<DadosContato[]> {
+    return this.http.get<DadosContato[]>(this.API);
   }
 
-  salvarContato(novoContato: DadosContato): void {
-    this.contatos.push(novoContato);
+  salvarContato(novoContato: DadosContato): Observable<DadosContato> {
+    return this.http.post<DadosContato>(this.API, novoContato);
+  }
 
-    localStorage.setItem('contatos', JSON.stringify(this.contatos));
+  buscarPorId(id: number): Observable<DadosContato> {
+    return this.http.get<DadosContato>(`${this.API}/${id}`);
+  }
+
+  excluirPorId(id: number): Observable<DadosContato> {
+    return this.http.delete<DadosContato>(`${this.API}/${id}`);
   }
 }

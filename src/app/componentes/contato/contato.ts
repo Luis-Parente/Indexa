@@ -1,12 +1,16 @@
 import {Component, Input} from '@angular/core';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-contato',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './contato.html',
   styleUrl: './contato.css',
 })
-export class ContatoComponent {
+export class Contato {
   @Input() nome: string = "";
-  @Input() telefone: string = "";
+  @Input() numero: string = "";
+  @Input() id?: number;
 }
