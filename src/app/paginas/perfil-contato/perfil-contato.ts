@@ -4,6 +4,7 @@ import {DadosContato} from '../../componentes/contato/dados.contato';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {ContatoService} from '../../services/contato.service';
 import {CommonModule} from '@angular/common';
+import {Separador} from '../../componentes/separador/separador';
 
 @Component({
   standalone: true,
@@ -12,6 +13,7 @@ import {CommonModule} from '@angular/common';
     Container,
     RouterLink,
     CommonModule,
+    Separador,
   ],
   templateUrl: './perfil-contato.html',
   styleUrls: ['./perfil-contato.css'],
@@ -24,7 +26,8 @@ export class PerfilContato implements OnInit {
     numero: '',
     email: '',
     aniversario: '',
-    redes: ''
+    redes: '',
+    avatar: '',
   }
 
   constructor(private activatedRoute: ActivatedRoute, private contatoService: ContatoService, private cdr: ChangeDetectorRef, private router: Router) {

@@ -6,4 +6,5 @@ export interface DadosContato {
   aniversario?: string
   redes?: string
   observacoes?: string
+  avatar: string | ArrayBuffer
 }

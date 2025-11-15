@@ -38,13 +38,14 @@ export class FormularioContato implements OnInit {
       aniversario: new FormControl(''),
       redes: new FormControl('', Validators.maxLength(255)),
       observacoes: new FormControl('', Validators.maxLength(255)),
+      avatar: new FormControl('', Validators.required),
     });
   }
 
   salvarContato() {
     const novoContato = this.contatoForm.value;
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    novoContato.id = id? parseInt(id) : null;
+    novoContato.id = id ? parseInt(id) : null;
 
     this.contatoService.editarOuSalvarContato(novoContato).subscribe(() => {
       this.contatoForm.reset();
@@ -53,7 +54,8 @@ export class FormularioContato implements OnInit {
   }
 
   cancelar() {
-    console.log('Cancelar');
+    this.contatoForm.reset();
+    this.router.navigateByUrl('/listaContatos');
   }
 
   carregarContato() {
@@ -63,5 +65,23 @@ export class FormularioContato implements OnInit {
         this.contatoForm.patchValue(contato);
       });
     }
+  }
+
+  aoSelecionarArquivo(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.lerArquivo(file);
+    }
+  }
+
+  lerArquivo(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if(reader.result) {
+        this.contatoForm.get("avatar")?.setValue(reader.result);
+      }
+    }
+
+    reader.readAsDataURL(file);
   }
 }

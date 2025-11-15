@@ -7,7 +7,6 @@ import {Separador} from '../../componentes/separador/separador';
 import {RouterLink} from '@angular/router';
 import {ContatoService} from '../../services/contato.service';
 import {DadosContato} from '../../componentes/contato/dados.contato';
-import {PerfilContato} from '../perfil-contato/perfil-contato';
 
 @Component({
   selector: 'app-lista-contatos',
@@ -34,7 +33,6 @@ export class ListaContatos implements OnInit {
 
   ngOnInit() {
     this.contatoService.obterContatos().subscribe(contatos => {
-      console.log(contatos);
       this.contatos = contatos;
       this.cdr.detectChanges();
     });

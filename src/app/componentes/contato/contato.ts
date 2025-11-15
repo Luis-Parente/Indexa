@@ -13,4 +13,5 @@ export class Contato {
   @Input() nome: string = "";
   @Input() numero: string = "";
   @Input() id?: number;
+  @Input() avatar: string | ArrayBuffer = '';
 }
